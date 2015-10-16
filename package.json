@@ -1,0 +1,12 @@
+{
+	"name": "Monastery",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "~4.9.0",
+    		"node-rest-client": "^1.4.4"
+	},
+  "scripts": {
+    "start": "node app.js"
+  }
+}
