@@ -17,17 +17,31 @@ router.route('/servers/:host/:port/:players')
 		console.log(req.params.host+":"+req.params.port+" "+req.params.players+" player"+(req.params.players != 1 ? "s." : "."));
 		var port = parseInt(req.params.port);
 		var players = parseInt(req.params.players);
-		if (isNaN(port) || isNaN(players)) {
-			console.log("failed");
+		if (isNaN(port)) {
+			console.error("failed port not a number");
+			res.sendStatus(403);
+		} else if (isNaN(players)) {
+			console.error("failed players not a number");
+			res.sendStatus(403);
 		} else if (req.params.host.indexOf('<') === -1
 			&& req.params.host.indexOf('>') === -1
 			&& req.params.host.indexOf('&') === -1
-			&& req.params.host.indexOf(';') === -1) {
-			gameServers['http://'+req.params.host+':'+port] = players;
+			&& req.params.host.indexOf(';') === -1
+			&& port >= 0 && players >= 0) {
+			if (port === 443) {
+				gameServers['https://'+req.params.host] = players;
+				res.sendStatus(200);
+			} else if (port === 80) {
+				gameServers['http://'+req.params.host] = players;
+				res.sendStatus(200);
+			} else {
+				gameServers['http://'+req.params.host+":"+port] = players;
+				res.sendStatus(200);
+			}
 		} else {
-			console.log("failed");
+			console.error("failed host bad or bad number of players or port illegal");
+			res.sendStatus(403);
 		}
-		res.end();
 	});
 app.use('/api', router);
 
@@ -38,6 +52,6 @@ console.log('express server started on port %s', process.env.PORT || defaultPort
 
 http.on('error', function (e) {
   if (e.code == 'EADDRINUSE') {
-    console.log('Address in use, exiting...');
+    console.error('Address in use, exiting...');
   }
 });
