@@ -15,7 +15,14 @@ router.route('/servers')
 router.route('/servers/:host/:port/:players')
 	.get(function(req, res) {
 		console.log(req.params.host+":"+req.params.port+" "+req.params.players+" player"+(req.params.players != 1 ? "s." : "."));
-		gameServers['http://'+req.params.host+':'+req.params.port] = req.params.players;
+		if (typeof req.params.port === 'number'
+			&& typeof req.params.players === 'number'
+			&& req.params.host.indexOf('<') === -1
+			&& req.params.host.indexOf('>') === -1
+			&& req.params.host.indexOf('&') === -1
+			&& req.params.host.indexOf(';') === -1) {
+			gameServers['http://'+req.params.host+':'+req.params.port] = req.params.players;
+		}
 	});
 app.use('/api', router);
 
