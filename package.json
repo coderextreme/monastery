@@ -3,10 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
-		"express": "~4.9.0",
-    		"node-rest-client": "^1.4.4"
+		"express": "*",
+		"node-rest-client": "*"
 	},
-  "scripts": {
-    "start": "node app.js"
-  }
+	"scripts": {
+		"start": "node app.js"
+	}
 }
