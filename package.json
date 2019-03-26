@@ -3,8 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
-		"express": "*",
-		"node-rest-client": "*"
+		"express": "*"
+	},
+	"devDependencies": {
+		"node-rest-client-patched": "*"
 	},
 	"scripts": {
 		"start": "node app.js"
