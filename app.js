@@ -1,8 +1,16 @@
-gameServers = {};
+import express from 'express';
+import http from 'http';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-var express = require('express');
+let gameServers = {};
+
 var app = express();
-var http = require('http').Server(app);
+const server = http.createServer(app);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(__dirname));
 
 // set up a rest server
@@ -46,11 +54,11 @@ router.route('/servers/:host/:port/:players')
 app.use('/api', router);
 
 var defaultPort = 3000;
-http.listen(process.env.PORT || defaultPort);
+server.listen(process.env.PORT || defaultPort);
 
 console.log('express server started on port http://localhost:%s', process.env.PORT || defaultPort);
 
-http.on('error', function (e) {
+server.on('error', function (e) {
   if (e.code == 'EADDRINUSE') {
     console.error('Address in use, exiting...');
   }
