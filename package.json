@@ -7,7 +7,7 @@
 		"express": "*"
 	},
 	"devDependencies": {
-		"node-rest-client-patched": "*"
+		"node-rest-client": "*"
 	},
 	"scripts": {
 		"start": "node app.js"
