@@ -7,7 +7,8 @@
 		"express": "*"
 	},
 	"devDependencies": {
-		"node-rest-client": "*"
+		"node-rest-client": "*",
+    		"debug": "4.4.1"
 	},
 	"scripts": {
 		"start": "node app.js"
