@@ -8,7 +8,7 @@
 	},
 	"devDependencies": {
 		"node-rest-client": "*",
-    		"debug": "4.4.1"
+    		"debug": "4.4.3"
 	},
 	"scripts": {
 		"start": "node app.js"
