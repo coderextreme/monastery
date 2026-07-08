@@ -4,10 +4,10 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
-		"express": "*"
+		"express": "5.2.1"
 	},
 	"devDependencies": {
-		"node-rest-client": "*",
+		"node-rest-client": "3.1.1",
     		"debug": "4.4.3"
 	},
 	"scripts": {
